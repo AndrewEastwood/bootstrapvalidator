@@ -1,24 +1,24 @@
 require.config({
-    baseUrl: '../../',
+    baseUrl: '../../src/js/',
     paths: {
-        'jquery': 'vendor/jquery/jquery.min',
-        'bootstrap': 'vendor/bootstrap/js/bootstrap.min',
-        'plgDepend': 'src/js/addon/depend',
-        'formValidation': 'src/js/base',
-        'formValidationHelper': 'src/js/helper',
+        // 'plgDepend': 'src/js/addon/depend',
+        // 'formValidation': 'src/js/base',
+        // 'formValidationHelper': 'src/js/helper',
         // 'frmBootstrap': '../../dist/js/framework/bootstrap.js'
+        // 'formValidation': 'base'
     },
-    shim: {
-        'formValidation': {
-            exports: 'FormValidation'
-        },
-        'formValidationHelper': {
-            deps: ['formValidation']
-        }
-    }
+    // shim: {
+    //     'base': {
+    //         exports: 'FormValidation',
+    //         deps: ['']
+    //     },
+    //     'formValidationHelper': {
+    //         deps: ['formValidation']
+    //     }
+    // }
 });
 
-define(['jquery', 'formValidation', 'plgDepend!f[bootstrap]'], function ($, fv) {
+define(['jquery', 'bsfvalidator!'], function ($, fv) {
     // return false;
     debugger;
     $('#defaultForm')

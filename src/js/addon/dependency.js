@@ -7,10 +7,10 @@
  */
 define(function () {
 
-    var addonParts = /a[(.*)];/;
-    var frameworkParts = /f[(.*)];/;
-    var languageParts = /l[(.*)];/;
-    var validatorParts = /v[(.*)];/;
+    var addonParts = /a([^;]*)/;
+    var frameworkParts = /f([^;]*)/;
+    var languageParts = /l([^;]*)/;
+    var validatorParts = /v([^;]*)/;
 
     return {
 

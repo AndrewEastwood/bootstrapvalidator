@@ -7,7 +7,20 @@
  * @license     http://formvalidation.io/license/
  */
 
-(function($) {
+(function(root, factory) {
+
+    "use strict";
+
+    // AMD module is defined
+    if (typeof define === "function" && define.amd) {
+        define("helper", ["jquery", "base"], factory);
+    } else {
+        // planted over the root!
+        factory(root.jQuery, root.FormValidation);
+    }
+
+}(this, function ($, FormValidation) {
+    debugger;
     // Helper methods, which can be used in validator class
     FormValidation.Helper = {
         /**
@@ -164,4 +177,5 @@
             return (check === 1);
         }
     };
-}(jQuery));
+    return FormValidation.Helper;
+}));

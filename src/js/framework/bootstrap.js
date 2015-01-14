@@ -10,6 +10,19 @@
 /**
  * This class supports validating Bootstrap form (http://getbootstrap.com/)
  */
+ (function(root, factory) {
+
+    "use strict";
+
+    // AMD module is defined
+    if (typeof define === "function" && define.amd) {
+        define("helper", ["jquery", "base"], factory);
+    } else {
+        // planted over the root!
+        factory(root.jQuery, root.FormValidation);
+    }
+
+}(this, function ($, FormValidation) {
 (function($) {
     FormValidation.Framework.Bootstrap = function(element, options, namespace) {
         options = $.extend(true, {
