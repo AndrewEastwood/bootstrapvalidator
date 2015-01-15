@@ -182,10 +182,11 @@ module.exports = function(grunt) {
                 tasks: ['concat:test']
             }
         }
+
     });
 
     grunt.registerTask('default', 'build');
-    grunt.registerTask('build',   ['copy', 'cssmin', 'concat', 'uglify']);
+    grunt.registerTask('build', ['copy', 'cssmin', 'concat', 'uglify']);
 
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-copy');

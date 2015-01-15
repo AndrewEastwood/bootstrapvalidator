@@ -2,7 +2,7 @@
  * FormValidation (http://formvalidation.io)
  * The best jQuery plugin to validate form fields. Support Bootstrap, Foundation, Pure, SemanticUI, UIKit frameworks
  *
- * @version     v0.6.1-dev, built on 2015-01-14 9:41:00 AM
+ * @version     v0.6.1-dev, built on 2015-01-15 7:33:09 AM
  * @author      https://twitter.com/nghuuphuoc
  * @copyright   (c) 2013 - 2015 Nguyen Huu Phuoc
  * @license     http://formvalidation.io/license/
@@ -10,7 +10,19 @@
 /**
  * This class supports validating Bootstrap form (http://getbootstrap.com/)
  */
-(function($) {
+(function(root, factory) {
+
+    "use strict";
+
+    // AMD module is defined
+    if (typeof define === "function" && define.amd) {
+        define("framework/bootstrap", ["jquery", "base"], factory);
+    } else {
+        // planted over the root!
+        factory(root.jQuery, root.FormValidation);
+    }
+
+}(this, function ($, FormValidation) {
     FormValidation.Framework.Bootstrap = function(element, options, namespace) {
         options = $.extend(true, {
             button: {
@@ -277,4 +289,6 @@
     };
 
     $.fn.bootstrapValidator.Constructor = FormValidation.Framework.Bootstrap;
-}(jQuery));
+
+    return FormValidation.Framework.Bootstrap;
+}));
