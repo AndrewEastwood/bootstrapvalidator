@@ -250,6 +250,7 @@
                 country: 'Prosím zadejte správné telefoní číslo pro %s',
                 countries: {
                     AE: 'Spojené arabské emiráty',
+                    BG: 'Bulharsko',
                     BR: 'Brazílii',
                     CN: 'Čínu',
                     CZ: 'Českou Republiku',

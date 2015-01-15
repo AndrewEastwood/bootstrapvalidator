@@ -250,6 +250,7 @@
                 country: 'Ju lutem vendosni një numër telefoni të vlefshëm në %s',
                 countries: {
                     AE: 'Emiratet e Bashkuara Arabe',
+                    BG: 'Bullgari',
                     BR: 'Brazil',
                     CN: 'Kinë',
                     CZ: 'Republika Çeke',
