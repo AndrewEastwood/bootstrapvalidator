@@ -1,6 +1,7 @@
 /**
- * Plugin that resolves required dependecies and starts main validator
- * How to use:
+ * this plugin loads all required components
+ * to start validaton process properly
+ * How to use this:
  *    include bsfvalidator according to the following pattern
  *    bsfvalidator!LANG:VALIDATORS
  *
@@ -11,6 +12,7 @@
  *       1) bsfvalidator!ua_UA:notEmpty,stringLength,regexp,emailAddress
  *       2) bsfvalidator!notEmpty,stringLength,regexp,emailAddress
  *       3) bsfvalidator!notEmpty
+ *    There is simple requirejs based project in demo/amd folder
  */
 define("bsfvalidator", ["jquery", "base", "helper", "framework/bootstrap"], function ($, base) {
     return {
