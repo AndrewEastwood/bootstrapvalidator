@@ -1,4 +1,16 @@
-(function($) {
+(function(root, factory) {
+
+    "use strict";
+
+    // AMD module is defined
+    if (typeof define === "function" && define.amd) {
+        define("language/zh_TW", ["jquery", "base"], factory);
+    } else {
+        // planted over the root!
+        factory(root.jQuery, root.FormValidation);
+    }
+
+}(this, function ($, FormValidation) {
     /**
      * Traditional Chinese language package
      * Translated by @tureki
@@ -373,4 +385,6 @@
             }
         }
     });
-}(jQuery));
+
+    return FormValidation.I18n.zh_TW;
+}));

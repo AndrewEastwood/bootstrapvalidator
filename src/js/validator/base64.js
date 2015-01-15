@@ -6,7 +6,20 @@
  * @copyright   (c) 2013 - 2015 Nguyen Huu Phuoc
  * @license     http://formvalidation.io/license/
  */
-(function($) {
+
+(function(root, factory) {
+
+    "use strict";
+
+    // AMD module is defined
+    if (typeof define === "function" && define.amd) {
+        define("validator/XXXXXXXXXXXXXXXXXXXXXXXXXbase64", ["jquery", "base"], factory);
+    } else {
+        // planted over the root!
+        factory(root.jQuery, root.FormValidation);
+    }
+
+}(this, function ($, FormValidation) {
     FormValidation.I18n = $.extend(true, FormValidation.I18n || {}, {
         'en_US': {
             base64: {
@@ -34,4 +47,6 @@
             return /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$/.test(value);
         }
     };
-}(jQuery));
+
+    return FormValidation.Validator.base64;
+}));

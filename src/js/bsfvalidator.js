@@ -1,57 +1,44 @@
-define("bsfvalidator", ["jquery", "base", "helper"], function ($, base) {
+/**
+ * Plugin that resolves required dependecies and starts main validator
+ * How to use:
+ *    include bsfvalidator according to the following pattern
+ *    bsfvalidator!LANG:VALIDATORS
+ *
+ *    Options:
+ *        LANG - (optinal and single value) indicates which language will be used
+ *        VALIDATORS - (required) defines which validators should be used
+ *    Examples:
+ *       1) bsfvalidator!ua_UA:notEmpty,stringLength,regexp,emailAddress
+ *       2) bsfvalidator!notEmpty,stringLength,regexp,emailAddress
+ *       3) bsfvalidator!notEmpty
+ */
+define("bsfvalidator", ["jquery", "base", "helper", "framework/bootstrap"], function ($, base) {
     return {
-        load : function(name, req, onLoad, config) {
-            var parts = name.split(';'),
-                components = {
-                    f: [],
-                    l: [],
-                    v: []
-                },
-                // componentsPaths = {
-                //     f: 'framework/',
-                //     l: 'language/',
-                //     v: 'validator/'
-                // },
-                // types = Object.getOwnPropertyNames(components),
-                itemBlock = null;
-            // for (var i = 0, len = parts.length; i < len; i++) {
-            //     itemBlock = parts[i].match(/(f|l|v)\[(.*)\]/);
-            //     if (!itemBlock || itemBlock.length !== 3) {
-            //         continue;
-            //     }
-            //     // add component
-            //     components[itemBlock[1]] = components[itemBlock[1]].concat(itemBlock[2].split(','));
-            // }
-            // debugger;
-            // var addons = name.match(regexps.addons);
-            // var frameworks = name.match(regexps.frameworks);
-            // var languages = name.match(regexps.languages);
-            // var validators = name.match(regexps.validators);
-            // var parts = rParts.exec(name);
-            for (var key in components) {
-                for (var i = 0, len = components[key].length; i < len; i++) {
-                    components[key][i] = componentsPaths[key] +  components[key][i];
-                }
+        load: function (name, req, onLoad, config) {
+            var parts = name.match(/((.*):)?(.*)/),
+                lang = null,
+                deps = [];
+            if (!parts) {
+                onLoad(base);
+                return;
             }
-
-/*
-                        // debugger;
-            req(components.f, function () {
-                        // debugger;
-                req(components.v, function () {
-                        // debugger;
-                    req(components.l, function () {
-                        // debugger;
-                        onLoad(base);
-                    })
-                })
-            });*/
-            req(parts[2].split(','), function(){
-                req([parts[1]], function(mod){
-                    onLoad(mod);
-                });
+            if (parts.length === 4) {
+                lang = parts[2];
+                deps = parts[3].split(',');
+            }
+            if (parts.length === 3) {
+                deps = parts[2].split(',');
+            }
+            for (var i = 0, len = deps.length; i < len; i++) {
+                deps[i] = 'validator/' + deps[i];
+            }
+            if (lang) {
+                lang = 'language/' + lang;
+                deps.unshift(lang);
+            }
+            req(deps, function(){
+                onLoad(base);
             });
-            
         }
-    };
+    }
 });

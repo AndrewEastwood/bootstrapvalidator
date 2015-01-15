@@ -1,4 +1,16 @@
-(function($) {
+(function(root, factory) {
+
+    "use strict";
+
+    // AMD module is defined
+    if (typeof define === "function" && define.amd) {
+        define("language/fi_FI", ["jquery", "base"], factory);
+    } else {
+        // planted over the root!
+        factory(root.jQuery, root.FormValidation);
+    }
+
+}(this, function ($, FormValidation) {
     /**
      * Finnish language package
      * Translated by @traone
@@ -373,4 +385,6 @@
             }
         }
     });
-}(jQuery));
+
+    return FormValidation.I18n.fi_FI;
+}));

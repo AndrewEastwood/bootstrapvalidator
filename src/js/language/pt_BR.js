@@ -1,4 +1,16 @@
-(function ($) {
+(function(root, factory) {
+
+    "use strict";
+
+    // AMD module is defined
+    if (typeof define === "function" && define.amd) {
+        define("language/pt_BR", ["jquery", "base"], factory);
+    } else {
+        // planted over the root!
+        factory(root.jQuery, root.FormValidation);
+    }
+
+}(this, function ($, FormValidation) {
     /**
      * Portuguese (Brazil) language package
      * Translated by @marcuscarvalho6. Improved by @dgmike
@@ -373,4 +385,6 @@
             }
         }
     });
-}(jQuery));
+
+    return FormValidation.I18n.pt_BR;
+}));

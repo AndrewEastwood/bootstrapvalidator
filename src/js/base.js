@@ -20,7 +20,6 @@
     }
 
 }(this, function ($) {
-    debugger;
 
     // Register the namespace
     var FormValidation = {
@@ -2102,24 +2101,39 @@
                     var framework = (options.framework || $this.attr('data-fv-framework') || 'bootstrap').toLowerCase();
                     switch (framework) {
                         case 'foundation':
+                            if (!FormValidation.Framework.Foundation) {
+                                throw "Please include Foundation framework";
+                            }
                             data = new FormValidation.Framework.Foundation(this, options);
                             break;
 
                         case 'pure':
                             data = new FormValidation.Framework.Pure(this, options);
+                            if (!FormValidation.Framework.Pure) {
+                                throw "Please include Pure framework";
+                            }
                             break;
 
                         case 'semantic':
+                            if (!FormValidation.Framework.Semantic) {
+                                throw "Please include Semantic framework";
+                            }
                             data = new FormValidation.Framework.Semantic(this, options);
                             break;
 
                         case 'uikit':
+                            if (!FormValidation.Framework.UIKit) {
+                                throw "Please include UIKit framework";
+                            }
                             data = new FormValidation.Framework.UIKit(this, options);
                             break;
 
                         case 'bootstrap':
                         /* falls through */
                         default:
+                            if (!FormValidation.Framework.Bootstrap) {
+                                throw "Please include Bootstrap framework";
+                            }
                             data = new FormValidation.Framework.Bootstrap(this, options);
                             break;
                     }

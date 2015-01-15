@@ -11,7 +11,19 @@
  * This class supports validating Foundation form (http://foundation.zurb.com/)
  */
 /* global Foundation: false */
-(function($) {
+(function(root, factory) {
+
+    "use strict";
+
+    // AMD module is defined
+    if (typeof define === "function" && define.amd) {
+        define("framework/foundation", ["jquery", "base"], factory);
+    } else {
+        // planted over the root!
+        factory(root.jQuery, root.FormValidation);
+    }
+
+}(this, function ($, FormValidation) {
     FormValidation.Framework.Foundation = function(element, options) {
         options = $.extend(true, {
             button: {
@@ -160,4 +172,6 @@
             }
         }
     });
-}(jQuery));
+
+    return FormValidation.Framework.Foundation;
+}));

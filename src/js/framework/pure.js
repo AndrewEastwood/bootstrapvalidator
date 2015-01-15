@@ -10,7 +10,19 @@
 /**
  * This class supports validating Pure framework (http://purecss.io/)
  */
-(function($) {
+(function(root, factory) {
+
+    "use strict";
+
+    // AMD module is defined
+    if (typeof define === "function" && define.amd) {
+        define("framework/pure", ["jquery", "base"], factory);
+    } else {
+        // planted over the root!
+        factory(root.jQuery, root.FormValidation);
+    }
+
+}(this, function ($, FormValidation) {
     FormValidation.Framework.Pure = function(element, options) {
         options = $.extend(true, {
             button: {
@@ -61,4 +73,6 @@
             }
         }
     });
-}(jQuery));
+
+    return FormValidation.Framework.Pure;
+}));

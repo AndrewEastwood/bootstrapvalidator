@@ -6,7 +6,20 @@
  * @copyright   (c) 2013 - 2015 Nguyen Huu Phuoc
  * @license     http://formvalidation.io/license/
  */
-(function($) {
+
+(function(root, factory) {
+
+    "use strict";
+
+    // AMD module is defined
+    if (typeof define === "function" && define.amd) {
+        define("validator/vat", ["jquery", "base"], factory);
+    } else {
+        // planted over the root!
+        factory(root.jQuery, root.FormValidation);
+    }
+
+}(this, function ($, FormValidation) {
     FormValidation.I18n = $.extend(true, FormValidation.I18n || {}, {
         'en_US': {
             vat: {
@@ -1426,4 +1439,7 @@
             return /^4[0-9]{9}$/.test(value);
         }
     };
-}(jQuery));
+
+
+    return FormValidation.Validator.vat;
+}));

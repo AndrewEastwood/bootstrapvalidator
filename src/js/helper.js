@@ -20,7 +20,7 @@
     }
 
 }(this, function ($, FormValidation) {
-    debugger;
+
     // Helper methods, which can be used in validator class
     FormValidation.Helper = {
         /**

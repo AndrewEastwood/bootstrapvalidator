@@ -6,7 +6,20 @@
  * @copyright   (c) 2013 - 2015 Nguyen Huu Phuoc
  * @license     http://formvalidation.io/license/
  */
-(function($) {
+
+(function(root, factory) {
+
+    "use strict";
+
+    // AMD module is defined
+    if (typeof define === "function" && define.amd) {
+        define("validator/issn", ["jquery", "base"], factory);
+    } else {
+        // planted over the root!
+        factory(root.jQuery, root.FormValidation);
+    }
+
+}(this, function ($, FormValidation) {
     FormValidation.I18n = $.extend(true, FormValidation.I18n || {}, {
         'en_US': {
             issn: {
@@ -55,4 +68,7 @@
             return (sum % 11 === 0);
         }
     };
-}(jQuery));
+
+
+    return FormValidation.Validator.issn;
+}));

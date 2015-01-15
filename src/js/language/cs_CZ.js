@@ -1,4 +1,16 @@
-(function($) {
+(function(root, factory) {
+
+    "use strict";
+
+    // AMD module is defined
+    if (typeof define === "function" && define.amd) {
+        define("language/cs_CZ", ["jquery", "base"], factory);
+    } else {
+        // planted over the root!
+        factory(root.jQuery, root.FormValidation);
+    }
+
+}(this, function ($, FormValidation) {
     /**
      * Czech language package
      * Translated by @AdwinTrave. Improved by @cuchac, @budik21
@@ -373,4 +385,6 @@
             }
         }
     });
-}(window.jQuery));
+
+    return FormValidation.I18n.cs_CZ;
+}));

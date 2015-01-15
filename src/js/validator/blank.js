@@ -5,7 +5,20 @@
  * @copyright   (c) 2013 - 2015 Nguyen Huu Phuoc
  * @license     http://formvalidation.io/license/
  */
-(function($) {
+
+(function(root, factory) {
+
+    "use strict";
+
+    // AMD module is defined
+    if (typeof define === "function" && define.amd) {
+        define("validator/blank", ["jquery", "base"], factory);
+    } else {
+        // planted over the root!
+        factory(root.jQuery, root.FormValidation);
+    }
+
+}(this, function ($, FormValidation) {
     FormValidation.Validator.blank = {
         /**
          * Placeholder validator that can be used to display a custom validation message
@@ -33,4 +46,7 @@
             return true;
         }
     };
-}(jQuery));
+
+
+    return FormValidation.Validator.blank;
+}));

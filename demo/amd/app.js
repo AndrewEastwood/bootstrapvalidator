@@ -1,28 +1,13 @@
+/* Simple example how to use bsfvalidator with requirejs app */
+
 require.config({
-    baseUrl: '../../src/js/',
-    paths: {
-        // 'plgDepend': 'src/js/addon/depend',
-        // 'formValidation': 'src/js/base',
-        // 'formValidationHelper': 'src/js/helper',
-        // 'frmBootstrap': '../../dist/js/framework/bootstrap.js'
-        // 'formValidation': 'base'
-    },
-    // shim: {
-    //     'base': {
-    //         exports: 'FormValidation',
-    //         deps: ['']
-    //     },
-    //     'formValidationHelper': {
-    //         deps: ['formValidation']
-    //     }
-    // }
+    baseUrl: '../../src/js/'
 });
 
-define(['jquery', 'bsfvalidator!'], function ($, fv) {
-    // return false;
-    debugger;
+define(['jquery', 'bsfvalidator!ua_UA:notEmpty,stringLength,regexp,emailAddress'], function ($, fv) {
     $('#defaultForm')
         .formValidation({
+            locale: 'ua_UA',
             message: 'This value is not valid',
             icon: {
                 valid: 'glyphicon glyphicon-ok',
@@ -31,58 +16,32 @@ define(['jquery', 'bsfvalidator!'], function ($, fv) {
             },
             fields: {
                 username: {
-                    message: 'The username is not valid',
                     validators: {
                         notEmpty: {
-                            message: 'The username is required and can\'t be empty'
                         },
                         stringLength: {
                             min: 6,
-                            max: 30,
-                            message: 'The username must be more than 6 and less than 30 characters long'
+                            max: 30
                         },
-                        /*remote: {
-                            url: 'remote.php',
-                            message: 'The username is not available'
-                        },*/
                         regexp: {
-                            regexp: /^[a-zA-Z0-9_\.]+$/,
-                            message: 'The username can only consist of alphabetical, number, dot and underscore'
+                            regexp: /^[a-zA-Z0-9_\.]+$/
                         }
                     }
                 },
                 email: {
                     validators: {
                         notEmpty: {
-                            message: 'The email address is required and can\'t be empty'
                         },
                         emailAddress: {
-                            message: 'The input is not a valid email address'
                         }
                     }
                 },
                 password: {
                     validators: {
                         notEmpty: {
-                            message: 'The password is required and can\'t be empty'
                         }
                     }
                 }
             }
-        })
-        .on('success.form.fv', function(e) {
-            // Prevent form submission
-            e.preventDefault();
-
-            // Get the form instance
-            var $form = $(e.target);
-
-            // Get the FormValidation instance
-            var bv = $form.data('formValidation');
-
-            // Use Ajax to submit form data
-            $.post($form.attr('action'), $form.serialize(), function(result) {
-                console.log(result);
-            }, 'json');
         });
 });

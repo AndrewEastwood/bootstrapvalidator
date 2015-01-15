@@ -10,7 +10,19 @@
 /**
  * This class supports validating SemanticUI form (http://semantic-ui.com/)
  */
-(function($) {
+(function(root, factory) {
+
+    "use strict";
+
+    // AMD module is defined
+    if (typeof define === "function" && define.amd) {
+        define("framework/semantic", ["jquery", "base"], factory);
+    } else {
+        // planted over the root!
+        factory(root.jQuery, root.FormValidation);
+    }
+
+}(this, function ($, FormValidation) {
     FormValidation.Framework.Semantic = function(element, options) {
         options = $.extend(true, {
             button: {
@@ -160,4 +172,6 @@
             }
         }
     });
-}(jQuery));
+
+    return FormValidation.Framework.Semantic;
+}));
